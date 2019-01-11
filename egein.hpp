@@ -14,6 +14,7 @@ public:
 
 	void MatLaplacien();
 	void TermeSource();
+	void Solexact();
 
 	void SolveurDirect_QR();
 	void SolveurDirect_LU();

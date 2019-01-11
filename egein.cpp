@@ -68,6 +68,9 @@ void Laplacien::SolveurIteratif_ConjugateGradient()
 
 void Laplacien::SolveurIteratif_LeastSquaresConjugateGradient()
 {
+	Eigen::LeastSquaresConjugateGradient<Eigen::SparseMatrix<double> > LsC_Grad;
+	LsC_Grad.compute(MAT_A);
+	Vec_Uapp=LsC_Grad.solve(Vec_F);
 	
 }
 

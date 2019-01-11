@@ -33,7 +33,35 @@ void Laplacien::TermeSource()
 	}
 }
 
-void Laplacien::SolveurDirect(){}
+void Laplacien::SolveurDirect_QR()
+{
+	
+}
+
+void Laplacien::SolveurDirect_LU()
+{
+	
+}
+
+void Laplacien::SolveurDirect_Cholesky()
+{
+	
+}
+
+void Laplacien::SolveurIteratif_ConjugateGradient()
+{
+	
+}
+
+void Laplacien::SolveurIteratif_LeastSquaresConjugateGradient()
+{
+	
+}
+
+void Laplacien::SolveurIteratif_BiCGSTAB()
+{
+	
+}
 
 double Laplacien::CalcErreur(){}
 

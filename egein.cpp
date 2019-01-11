@@ -23,7 +23,17 @@ double Laplacien::f(double x) const
 	return -std::exp(-x) * (2. + 2.*x - m_a - m_b - (x-m_a)*(x-m_b));
 }
 
-void Laplacien::Matlaplacien(){}
+void Laplacien:: MatLaplacien(){
+  int i;
+  MAT_A.resize(m_N,m_N);
+  for(i=0;i<m_N;i++){
+    MAT_A.coeffRef(i, i)=2;
+  }
+    for(i=0;i<m_N-1;i++){
+    MAT_A.coeffRef(i, i+1)=-1;
+    MAT_A.coeffRef(i+1,i)=-1;
+  }
+}
 
 void Laplacien::TermeSource()
 {
@@ -51,7 +61,9 @@ void Laplacien::SolveurDirect_Cholesky()
 
 void Laplacien::SolveurIteratif_ConjugateGradient()
 {
-	
+	Eigen::ConjugateGradient<Eigen::SparseMatrix<double> > C_Grad;
+  	C_Grad.compute(MAT_A);
+  	Vec_Uapp=C_Grad.solve(Vec_F);
 }
 
 void Laplacien::SolveurIteratif_LeastSquaresConjugateGradient()
@@ -61,7 +73,10 @@ void Laplacien::SolveurIteratif_LeastSquaresConjugateGradient()
 
 void Laplacien::SolveurIteratif_BiCGSTAB()
 {
-	
+	Eigen::BiCGSTAB<Eigen::SparseMatrix<double> > BCG;
+	BCG.compute(MAT_A);
+	Vec_Uapp=BCG.solve(Vec_F);
+
 }
 
 double Laplacien::CalcErreur(){}

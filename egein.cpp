@@ -82,6 +82,16 @@ void Laplacien::SolveurIteratif_BiCGSTAB()
 
 }
 
-double Laplacien::CalcErreur(){}
+double Laplacien::CalcErreur(){
+	int i;
+	m_er=0;
+	for(i=0;i<m_N;i++){
+		if(std::abs(Vec_Uex(i)-Vec_Uapp(i))>m_er){
+			m_er=std::abs(Vec_Uex(i)-Vec_Uapp(i));
+		}
+  	}
+	return m_er;
+}
+}
 
 void Laplacien::Save(const std::string &fichier){}

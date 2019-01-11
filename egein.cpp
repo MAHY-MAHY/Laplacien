@@ -44,6 +44,14 @@ void Laplacien::TermeSource()
 	}
 }
 
+void Laplacien:: Solexact(){
+  int i;
+  Vec_Uex.resize(m_N+2);
+  for(i=0;i<m_N+2;i++){
+    Vec_Uapp(i)=(Vec_X(i)-m_a)*(Vec_X(i)-m_b)*(std::exp(Vec_X(i)));
+  }
+}
+
 void Laplacien::SolveurDirect_QR()
 {
 	Eigen::SparseQR<Eigen::SparseMatrix<double>, Eigen::COLAMDOrdering<int> > solver;

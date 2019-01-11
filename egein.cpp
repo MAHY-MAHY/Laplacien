@@ -4,12 +4,17 @@
 
 #include "egein.hpp"
 
-Laplacien::Laplacien(): m_a(0.), m_b(1.), m_N(2), m_h((m_b-m_a)/(m_N+1))
+Laplacien::Laplacien(): Laplacien(0., 1., 1)
 {
 }
 
-Laplacien::Laplacien(const double a, const double b, const int N ): m_a(a), m_b(b), m_N(N), m_h( (m_b-m_a)/(m_N+1))
+Laplacien::Laplacien(const double a, const double b, const int N ): m_a(a), m_b(b), m_N(N), m_h( (m_b-m_a)/(m_N+1)), m_er(0.)
 {
+	Vec_X.resize(N+2);
+	for(int i=0; i<=N+1; ++i)
+	{
+		Vec_X(i) = m_a + i*m_h;
+	}
 }
 
 double Laplacien::f(double x) const
@@ -19,10 +24,17 @@ double Laplacien::f(double x) const
 
 void Laplacien::Matlaplacien(){}
 
-void Laplacien::TermeSource(){}
+void Laplacien::TermeSource()
+{
+	Vec_F.resize(m_N);
+	for(int i=1; i<=m_N; ++i)
+	{
+		Vec_F(i-1) = f(Vec_X(i));
+	}
+}
 
 void Laplacien::SolveurDirect(){}
 
 double Laplacien::CalcErreur(){}
 
-void Laplacien::Save(std::string fichier){}
+void Laplacien::Save(const std::string &fichier){}

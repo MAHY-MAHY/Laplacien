@@ -123,6 +123,5 @@ double Laplacien::CalcErreur(){
   	}
 	return m_er;
 }
-}
 
 void Laplacien::Save(const std::string &fichier){}

@@ -4,31 +4,36 @@
 #ifndef egein_hpp
 #define egein_hpp
 
-class Laplacien{
-private:
-  const double a;
-  const double b;
-  const int N;
-  const double h;
-  Eigen::SparseMatrix<double> MAT_A;
-  Eigen::VectorXd Vec_X;
-  Eigen::VectorXd Vec_F;
-  Eigen::VectorXd Vec_Uapp;
-  Eigen::VectorXd Vec_Uex;
-  double er;
-
+class Laplacien
+{
 public:
-  Laplacien();
-  Laplacien(const double a, const double b,const int N);
-  void MatLaplacien();
-  void TermeSource();
-  void SolveurDirect();
-  void SolveurIteratif();
-  double CalcErreur();
-  void Save(std::string fichier);
-  
-  
-  
+	Laplacien();
+	Laplacien(const double a, const double b,const int N);
+
+	double f(double x) const;
+
+	void MatLaplacien();
+	void TermeSource();
+
+	void SolveurDirect();
+	void SolveurIteratif();
+	double CalcErreur();
+
+	void Save(std::string fichier);
+
+private:
+	const double m_a;
+	const double m_b;
+	const int m_N;
+	const double m_h;
+
+	Eigen::SparseMatrix<double> MAT_A;
+
+	Eigen::VectorXd Vec_X;
+	Eigen::VectorXd Vec_F;
+	Eigen::VectorXd Vec_Uapp;
+	Eigen::VectorXd Vec_Uex;
+	double m_er;
 };
 #endif
 

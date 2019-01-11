@@ -1,8 +1,8 @@
-#include <iostream>
-#include <Eigen/Dense>
-#include <Eigen/Sparse>
 #ifndef egein_hpp
 #define egein_hpp
+
+#include <Eigen/Dense>
+#include <Eigen/Sparse>
 
 class Laplacien
 {
@@ -22,10 +22,10 @@ public:
 	void SolveurIteratif_ConjugateGradient();
 	void SolveurIteratif_LeastSquaresConjugateGradient();
 	void SolveurIteratif_BiCGSTAB();
-	
+
 	double CalcErreur();
 
-	void Save(std::string fichier);
+	void Save(const std::string &fichier);
 
 private:
 	const double m_a;
@@ -37,10 +37,9 @@ private:
 
 	Eigen::VectorXd Vec_X;
 	Eigen::VectorXd Vec_F;
+
 	Eigen::VectorXd Vec_Uapp;
 	Eigen::VectorXd Vec_Uex;
 	double m_er;
 };
 #endif
-
-  

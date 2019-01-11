@@ -15,8 +15,14 @@ public:
 	void MatLaplacien();
 	void TermeSource();
 
-	void SolveurDirect();
-	void SolveurIteratif();
+	void SolveurDirect_QR();
+	void SolveurDirect_LU();
+	void SolveurDirect_Cholesky();
+
+	void SolveurIteratif_ConjugateGradient();
+	void SolveurIteratif_LeastSquaresConjugateGradient();
+	void SolveurIteratif_BiCGSTAB();
+	
 	double CalcErreur();
 
 	void Save(std::string fichier);

@@ -1,8 +1,9 @@
 #include <iostream>
-#include <Eigen/Dense>
-#include <Eigen/Sparse>
+#include<Eigen/SparseQR>
+#include<Eigen/SparseLU>
+#include<Eigen/IterativeLinearSolvers>
 
-#include "egein.hpp"
+#include "laplacien.h"
 
 Laplacien::Laplacien(): Laplacien(0., 1., 1)
 {

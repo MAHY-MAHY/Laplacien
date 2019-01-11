@@ -46,17 +46,48 @@ void Laplacien::TermeSource()
 
 void Laplacien::SolveurDirect_QR()
 {
-	
+	Eigen::SparseQR<Eigen::SparseMatrix<double>, Eigen::COLAMDOrdering<int> > solver;
+
+	solver.analyzePattern(MAT_A);
+	// Compute the numerical factorization
+	solver.factorize(MAT_A);
+
+	//Use the factors to solve the linear system
+	Vec_Uapp = solver.solve(Vec_F);
+
 }
 
 void Laplacien::SolveurDirect_LU()
 {
-	
+	Eigen::SparseLU<Eigen::SparseMatrix<double> > solver;
+	solver.analyzePattern(MAT_A);
+	// Compute the numerical factorization
+	solver.factorize(MAT_A);
+
+	//Use the factors to solve the linear system
+	Vec_Uapp = solver.solve(Vec_F);
 }
 
-void Laplacien::SolveurDirect_Cholesky()
+void Laplacien::SolveurDirect_LLT()
 {
-	
+	Eigen::SimplicialLLT<Eigen::SparseMatrix<double> > solver;
+	solver.analyzePattern(MAT_A);
+	// Compute the numerical factorization
+	solver.factorize(MAT_A);
+
+	//Use the factors to solve the linear system
+	Vec_Uapp = solver.solve(Vec_F);
+}
+
+void Laplacien::SolveurDirect_LDLT()
+{
+	Eigen::SimplicialLDLT<Eigen::SparseMatrix<double> > solver;
+	solver.analyzePattern(MAT_A);
+	// Compute the numerical factorization
+	solver.factorize(MAT_A);
+
+	//Use the factors to solve the linear system
+	Vec_Uapp = solver.solve(Vec_F);
 }
 
 void Laplacien::SolveurIteratif_ConjugateGradient()
